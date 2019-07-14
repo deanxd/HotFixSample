@@ -1,0 +1,3 @@
+com/deanxd/javafix/MainActivity.class
+com/deanxd/javafix/app/FixApplication.class
+com/deanxd/javafix/test/Test2.class
