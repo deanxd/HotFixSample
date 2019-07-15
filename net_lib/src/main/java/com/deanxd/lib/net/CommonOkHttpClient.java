@@ -24,7 +24,7 @@ import okhttp3.Response;
  * @function 用来发送get, post请求的工具类，包括设置一些请求的共用参数
  */
 public class CommonOkHttpClient {
-    private static final int TIME_OUT = 30;
+    private static final int TIME_OUT = 10;
     private static OkHttpClient mOkHttpClient;
 
     static {

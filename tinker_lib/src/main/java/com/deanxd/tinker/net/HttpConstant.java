@@ -1,4 +1,4 @@
-package com.deanxd.lib.net;
+package com.deanxd.tinker.net;
 
 /**
  * @author: qndroid
@@ -7,11 +7,11 @@ package com.deanxd.lib.net;
  */
 public class HttpConstant {
 
-    private static final String ROOT_URL = "http://www.imooc.com/api";
+    private static final String ROOT_URL = "https://www.bai2341234.com/api";
     /**
      * 检查是否有patch文件更新
      */
-    public static String UPDATE_PATCH_URL = ROOT_URL + "/tinker/update.php";
+    public static String UPDATE_PATCH_URL = ROOT_URL + "/tinker/download_patch.php";
 
     /**
      * patch文件下载地址

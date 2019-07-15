@@ -11,26 +11,18 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 /**
- * @author vision
- * @function build the request
+ *
  */
 public class CommonRequest {
     /**
      * create the key-value Request
-     *
-     * @param url
-     * @param params
-     * @return
      */
     public static Request createPostRequest(String url, RequestParams params) {
         return createPostRequest(url, params, null);
     }
 
-    /**可以带请求头的Post请求
-     * @param url
-     * @param params
-     * @param headers
-     * @return
+    /**
+     * 可以带请求头的Post请求
      */
     public static Request createPostRequest(String url, RequestParams params, RequestParams headers) {
         FormBody.Builder mFormBodyBuild = new FormBody.Builder();
@@ -48,19 +40,14 @@ public class CommonRequest {
         }
         FormBody mFormBody = mFormBodyBuild.build();
         Headers mHeader = mHeaderBuild.build();
-        Request request = new Request.Builder().url(url).
+        return new Request.Builder().url(url).
                 post(mFormBody).
                 headers(mHeader)
                 .build();
-        return request;
     }
 
     /**
      * ressemble the params to the url
-     *
-     * @param url
-     * @param params
-     * @return
      */
     public static Request createGetRequest(String url, RequestParams params) {
 
@@ -69,10 +56,6 @@ public class CommonRequest {
 
     /**
      * 可以带请求头的Get请求
-     * @param url
-     * @param params
-     * @param headers
-     * @return
      */
     public static Request createGetRequest(String url, RequestParams params, RequestParams headers) {
         StringBuilder urlBuilder = new StringBuilder(url).append("?");
@@ -96,11 +79,6 @@ public class CommonRequest {
                 .build();
     }
 
-    /**
-     * @param url
-     * @param params
-     * @return
-     */
     public static Request createMonitorRequest(String url, RequestParams params) {
         StringBuilder urlBuilder = new StringBuilder(url).append("&");
         if (params != null && params.hasParams()) {
@@ -113,8 +91,6 @@ public class CommonRequest {
 
     /**
      * 文件上传请求
-     *
-     * @return
      */
     private static final MediaType FILE_TYPE = MediaType.parse("application/octet-stream");
 

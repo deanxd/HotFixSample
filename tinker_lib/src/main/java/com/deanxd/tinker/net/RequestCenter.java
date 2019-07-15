@@ -1,31 +1,20 @@
-package com.deanxd.lib.net;
+package com.deanxd.tinker.net;
 
-
+import com.deanxd.lib.net.CommonOkHttpClient;
 import com.deanxd.lib.net.listener.DisposeDataHandle;
 import com.deanxd.lib.net.listener.DisposeDataListener;
 import com.deanxd.lib.net.listener.DisposeDownloadListener;
 import com.deanxd.lib.net.request.CommonRequest;
-import com.deanxd.lib.net.request.RequestParams;
+import com.deanxd.tinker.bean.BasePatch;
 
-/**
- * 请求发送中心
- */
 public class RequestCenter {
-
-    /**
-     * 根据参数发送所有post请求
-     */
-    public static void postRequest(String url, RequestParams params, DisposeDataListener listener, Class<?> clazz) {
-        CommonOkHttpClient.get(CommonRequest.createGetRequest(url, params), new DisposeDataHandle(listener, clazz));
-    }
-
 
     /**
      * 询问是否有patch可更新
      */
     public static void requestPatchUpdateInfo(DisposeDataListener listener) {
-//        RequestCenter.postRequest(HttpConstant.UPDATE_PATCH_URL, null, listener,
-//                BasePatch.class);
+        CommonOkHttpClient.get(CommonRequest.createGetRequest(HttpConstant.UPDATE_PATCH_URL, null),
+                new DisposeDataHandle(listener, String.class));
     }
 
     /**
