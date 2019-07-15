@@ -1,1 +1,1 @@
-include ':app', ':andfix', ':javafix'
+include ':app', ':andfix', ':javafix', ':net_lib', ':tinker_lib'
