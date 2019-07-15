@@ -57,7 +57,7 @@ public class TinkerManager {
     /**
      * 通过ApplicationLike获取Context
      */
-    private static Context getApplicationContext() {
+    public static Context getApplicationContext() {
         if (mAppLike == null) {
             throw new RuntimeException("please call TinkerManager.installTinker(ApplicationLike) first");
         }

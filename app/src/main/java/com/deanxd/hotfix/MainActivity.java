@@ -1,6 +1,7 @@
 package com.deanxd.hotfix;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -24,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadPatch(View view) {
-        String filePath = getExternalCacheDir().getAbsolutePath() + File.separator + "patch_signed.apk";
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "patch_signed.apk";
 
         File file = new File(filePath);
         if (file.exists()) {
             Log.e("Tinker>>>", filePath + "  文件存在");
 
         } else {
-            Log.e("Tinker>>>", filePath + "  文件存在");
+            Log.e("Tinker>>>", filePath + "  文件不存在");
         }
 
 

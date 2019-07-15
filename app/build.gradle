@@ -104,7 +104,7 @@ dependencies {
     compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
 }
 
-def tempOutputDir = "app-0715-20-24-06"
+def tempOutputDir = "app-0715-20-47-21"
 
 ext {
     tinkerEnable = true
