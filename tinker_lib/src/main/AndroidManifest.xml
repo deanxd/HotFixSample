@@ -14,6 +14,11 @@
             android:enabled="true"
             android:exported="false" />
 
+        <service
+            android:name=".module.MResultService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
