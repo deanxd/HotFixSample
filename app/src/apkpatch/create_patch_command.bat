@@ -1,0 +1,1 @@
+apkpatch -f new.apk -t old.apk -o output/ -k hotfixdemo.jks -p deanxd123 -a hotfix -e deanxd123
