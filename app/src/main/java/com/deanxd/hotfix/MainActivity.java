@@ -25,17 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadPatch(View view) {
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "patch_signed.apk";
-
-        File file = new File(filePath);
-        if (file.exists()) {
-            Log.e("Tinker>>>", filePath + "  文件存在");
-
-        } else {
-            Log.e("Tinker>>>", filePath + "  文件不存在");
-        }
-
-
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "patch_signed_7zip.apk";
         TinkerManager.loadPatch(filePath, "");
     }
 }

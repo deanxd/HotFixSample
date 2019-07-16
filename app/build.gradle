@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 def javaVersion = JavaVersion.VERSION_1_7
-def bakPath = file("${buildDir}/bakApk/") //指定基准文件存放位置
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.deanxd.hotfix"
         minSdkVersion 16
@@ -12,9 +12,13 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "MESSAGE", "\"I am the base apk\""
+//        buildConfigField "String", "TINKER_ID", "\"${getTinkerIdValue()}\""
+        buildConfigField "String", "PLATFORM", "\"all\""
     }
 
     sourceSets {
@@ -53,7 +57,7 @@ android {
         release {
             minifyEnabled true
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), project.file('proguard-rules.pro')
         }
 
         debug {
@@ -82,7 +86,6 @@ android {
     }
 }
 
-
 dependencies {
     implementation project(path: ':tinker_lib')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -97,19 +100,21 @@ dependencies {
 
     implementation("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
     implementation("com.tencent.tinker:tinker-android-loader:${TINKER_VERSION}") { changing = true }
-
+    compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
     annotationProcessor("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") {
         changing = true
     }
-    compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+
 }
 
-def tempOutputDir = "app-0715-20-47-21"
+def bakPath = file("${buildDir}/bakApk/")
+def tempOutputDir = "app-0716-19-39-18"
 
 ext {
     tinkerEnable = true
-    tinkerOldApkPath = "${bakPath}/${tempOutputDir}"
     tinkerID = "1.0"
+
+    tinkerOldApkPath = "${bakPath}/${tempOutputDir}"
     tinkerApplyMappingPath = "${bakPath}/${tempOutputDir}"
     tinkerApplyResourcePath = "${bakPath}/${tempOutputDir}"
     tinkerBuildFlavorDirectory = "${bakPath}/${tempOutputDir}"
@@ -169,7 +174,7 @@ if (buildWithTinker()) {
         }
 
         lib {
-            pattern = ["libs/*/*.so"]
+            pattern = ["lib/*/*.so"]
         }
 
         res {
@@ -183,6 +188,17 @@ if (buildWithTinker()) {
             configField("patchMessage", "fix the 1.0 version's bugs")
             configField("platform", "all")
             configField("patchVersion", "1.0")
+        }
+
+        /**
+         * if you don't use zipArtifact or path, we just use 7za to try
+         */
+        sevenZip {
+            /**
+             * optional，default '7za'
+             * the 7zip artifact path, it will use the right 7za with your platform
+             */
+            zipArtifact = "com.tencent.mm:SevenZip:1.1.10"
         }
     }
 

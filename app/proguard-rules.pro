@@ -48,3 +48,4 @@
 
 #your dex.loader pattern here
 -keep class com.tencent.tinker.loader.**
+-keep class com.deanxd.tinker.**

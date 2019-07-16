@@ -28,11 +28,10 @@ public class TinkerManager {
         if (!isInstalled) {
             //完成tinker初始化
 
-            Context context = mAppLike.getApplication().getApplicationContext();
+            DefaultLoadReporter loadReporter = new DefaultLoadReporter(mAppLike.getApplication());
+            DefaultPatchReporter patchReporter = new DefaultPatchReporter(mAppLike.getApplication());
+            mPatchListener = new MPatchListener(mAppLike.getApplication());
 
-            DefaultLoadReporter loadReporter = new DefaultLoadReporter(context);
-            DefaultPatchReporter patchReporter = new DefaultPatchReporter(context);
-            mPatchListener = new MPatchListener(context);
             UpgradePatch upgradePatch = new UpgradePatch();
 
             TinkerInstaller.install(mAppLike, loadReporter, patchReporter, mPatchListener, MResultService.class, upgradePatch);
@@ -61,6 +60,6 @@ public class TinkerManager {
         if (mAppLike == null) {
             throw new RuntimeException("please call TinkerManager.installTinker(ApplicationLike) first");
         }
-        return mAppLike.getApplication().getApplicationContext();
+        return mAppLike.getApplication();
     }
 }
