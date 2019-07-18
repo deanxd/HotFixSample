@@ -32,14 +32,7 @@ public class FixDexUtils {
                 throw new RuntimeException(targetFile.getName() + "delete file error");
             }
         }
-
-        try {
-            FileUitls.copyFile(newDexFile, targetFile);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
+        return FileUitls.copyFile(newDexFile, targetFile);
     }
 
 
